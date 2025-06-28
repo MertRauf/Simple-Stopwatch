@@ -1,0 +1,222 @@
+/* Define custom font: Roboto Mono */
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('./fonts/roboto-mono-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('./fonts/roboto-mono-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Vivid color palette */
+body.gradient-canli {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ce79);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+/* Pastel color palette */
+body.gradient-pastel {
+    background: linear-gradient(45deg, #f4c4f3, #c4e0e5, #d4fc79, #96e6a1);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+/* Night color palette */
+body.gradient-gece {
+    background: linear-gradient(45deg, #2c3e50, #4b79a1, #283e51, #1e3a8a);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+/* Sunset color palette */
+body.gradient-gunbatimi {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #f7a399, #f7b731);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+/* Gradient animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Pulse animation for display */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Slide-in animation for lap items */
+@keyframes slideIn {
+    0% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+.stopwatch {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 90%;
+    z-index: 1;
+}
+
+.stopwatch:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+#display {
+    font-size: 64px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#display.running {
+    animation: pulse 2s ease infinite;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.controls button {
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.controls button:active {
+    transform: scale(0.95);
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#lap {
+    background-color: #28a745;
+}
+
+#lap:hover {
+    background-color: #218838;
+}
+
+#lap:active {
+    background-color: #1e7e34;
+}
+
+#reset {
+    background-color: #dc3545;
+}
+
+#reset:hover {
+    background-color: #b02a37;
+}
+
+#reset:active {
+    background-color: #a71d2a;
+}
+
+.lap-list {
+    max-height: 150px;
+    overflow-y: auto;
+    text-align: left;
+    font-size: 16px;
+    color: #333;
+}
+
+.lap-list div {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.color-selector {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+.color-selector select {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #343a40;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.color-selector select:hover {
+    background-color: #495057;
+}
+
+.color-selector select:focus {
+    outline: none;
+    background-color: #495057;
+}
+
+/* Mobile compatibility */
+@media (max-width: 600px) {
+    #display {
+        font-size: 48px;
+    }
+    .controls button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    .stopwatch {
+        padding: 20px;
+    }
+    .lap-list {
+        font-size: 14px;
+    }
+    .color-selector {
+        bottom: 10px;
+        left: 10px;
+    }
+    .color-selector select {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
